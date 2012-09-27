@@ -118,17 +118,6 @@ For each course, he will have to make a list of material that all the students a
 
 Next, Teacher1 does is to search for already existing material that teaches what he wants to teach so that he does not have to rewrite existing material.
 
-The process of searching for new materials is a complex part of any system. It can consist of a mix of:
-
-\begin{itemize}
-  \item implicit metrics based on personal estimations of which texts and authors are good, based on what the teacher has read or on the opinions of friends whom he trusts.
-  \item algorithms which make metrics on the materials, and automatically select content which Teacher1 is more likely to like, based on his input
-\end{itemize}
-
-all taking into account which words/expressions the user is looking for.
-
-I will not focus on this automatic search system, which is a very difficult and researched topic, but I do suppose that a system such as that used by Youtube based on tags and upvotes would be initially sufficient.
-
 Once the teacher has looked for material, he may choose to:
 
 \begin{itemize}
@@ -160,6 +149,8 @@ Finally, if authors cannot reach a consensus, it may be necessary to split the p
 \subsubsection{Modifying existing material without edit privileges}
 
 If on the other hand, the teacher wishes to modify material for which he has no edit privileges, then what he can do is to first copy the material, modify if, and then submit his modifications to those users that have the edit privileges, who should be then notified of this.
+
+Before making large modifications, it is wise to ask those with edit rights if it has a change to me merged, and what criteria it needs to follow to actually be merged. This inquiry can save a lot of time, since either the teacher may implement things directly in the way that editor will accept, and secondly may lead the teacher to completely give up on this modification and modify someone else's work where the modifications have larger chances of being incorporated.
 
 The users with edit rights can then choose to either accept or reject the merge, and if they reject it, they should justify why. Another option, is that they indicate what would be necessary for the changes to be accept, and if they are simple and desirable enough, even make those changes themselves.
 
@@ -202,9 +193,41 @@ In doing so, a student:
 
 It can be argued that no-one knows what students need better than students themselves.
 
-\section{Requirements their rationale}
+\subsection{Further developments} \label{further-developments}
 
-This section lists more specific goals which will have to be reached in order to achieve the goals exposed in section \ref{secUseCases}.
+While the fundamental use cases have been listed here, there are still a few points which are less urgent but would be very interesting to see implemented:
+
+\subsubsection{Improved metrics for material}
+
+The process of searching for new materials is a complex part of any system, which is used by any user. It can consist of a mix of:
+
+\begin{itemize}
+  \item implicit metrics based on personal estimations of which texts and authors are good, based on what the teacher has read or on the opinions of friends whom he trusts.
+  \item algorithms which make metrics on the materials, and automatically select content which Teacher1 is more likely to like, based on his input
+\end{itemize}
+
+all taking into account which words/expressions the user is looking for.
+
+The key of this process is of course to set metrics, which determine which file should appear above the others on the search results.
+
+I will not focus on this automatic search system, which is a very difficult and researched topic, but I do suppose that a system such as that used by Youtube based on tags and upvotes would be initially sufficient.
+
+It would however be interesting to use more complex metrics, and even allow users to explicitly describe their own metrics with a small piece of code.
+
+\subsubsection{Metrics for people} \label{metrics-for-people}
+
+Besides ranking materials with several metrics, it is also interesting to rank people with metrics.
+
+This is interesting because:
+
+\begin{itemize}
+  \item it could allow for a person search function that would allow people to find popular writers, to follow their material
+  \item it would be an incentive for people to write, since people want to become famous to get better jobs, and just for the sake of it (game mechanics)
+\end{itemize}
+
+\section{Requirements} \label{requirements}
+
+This section lists more specific goals which will have to be reached in order to achieve the goals exposed in \ref{use-cases}.
 
 \subsection{Generation and publishing of learning material}
 
