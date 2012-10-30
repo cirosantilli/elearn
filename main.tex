@@ -9,6 +9,7 @@ Tutor: Roseli Lopes
 
 \begin{document}
 
+\begin{comment}
 TODO simple top use cases
 TODO bugtracker alexandre:
 
@@ -25,24 +26,43 @@ descricao do sistema
 use cases
 requisitos funcionais/nao funcionais
 
-
 keyword: project management
 
 difficulty: multiple login
 
-\maketitle
-
 \newpage
+\end{comment}
+
+%this makes the title. At first comment out to get quickly to the table of contents in dev mode.
+\maketitle
+\newpage
+
+%this makes the abstract. At first comment out to get quickly to the table of contents in dev mode.
+%\begin{abstract}
+%\end{abstract}
+%\newpage
 
 \tableofcontents
-
 \newpage
 
-\section{Introduction}
+\section{Special thanks} \label{special-thanks}
+
+I must express my special thanks to the following people:
+
+\begin{itemize}
+  \item Alexandre Marinazzo from the LSI lab and his co-workers, for tips on Django and web frameworks in general.
+  \item the Django community, for powering such a nice web framework for free
+  \item Google, the Stackoverflow community, and so many bloggers, which just make finding answers to your questions faster
+  \item the linux community in general, for providing free of cost all the necessary tools
+      to make websites and programs that improve the world possible
+\end{itemize}
+\newpage
+
+\section{Introduction} \label{introduction}
 
 The aim of this project is to study current e-learning methodologies, and after deciding which one is more promising, to develop as many features as possible towards the goal on an order of increasing cost/benefit.
 
-The major advantages of elearning are:
+The major advantages of e-learning are:
 
 \begin{itemize}
   \item re utilizing as much as possible learning material by using the computer instead of giving courses or answering questions live. Clearly, once a question is answered, and if many others have the same question and can find the original question with the answer, teachers don't waste time re-explaining it again. This gain is specially significant if a large number of students uses the system and works on the same material.
@@ -75,7 +95,7 @@ The goal of this section is to describe in general what the system does from the
 
 \subsection{Use cases by analogy} \label{use-cases-analogy}
 
-Maybe the fastest way of describing the system is by comparing it to other systems. Therefore, if you know what is github/googlecode (git/svn + web interface) and a bugtracker, I would summarize my desired system as a Github/googlecode with a bugtracker that such that:
+Maybe the fastest way of describing the system is by comparing it to other systems. Therefore, if you know what is github \cite{Gi12}/googlecode\cite{Go12} (git \cite{git}/subversion \cit{svn} + web interface) and a bugtracker, I would summarize my desired system as a Github/googlecode with a bugtracker that such that:
 
 \begin{itemize}
   \item each issue in the bugtracker has a localization id field which indicates what point of the material is the issue about
@@ -274,7 +294,7 @@ Creation and editing of learning material can be done either on a browser (and t
 
   A linked question is which input format should be used, since there are hard to solve conflicts between the specification of a pdf document and an html one.
   
-  A viable solution to the problem is to specify the minimum subset of html/latex which must be generated from a single input file, and implement those items, either with a simplified markup (preferable) or with some harder xml specified language (simpler but harder on the user to type and read). Also, it is clear that there will always be rarer typesetting features (but no structural features) missing from the chosen subset, and it could simply be chosen that latex will be used to implement those, being the only effort to translate those features to something compatible with html, such as images or mathml. I believe that a subset such as that used in the Connexions system is adequate.
+  A viable solution to the problem is to specify the minimum subset of html/latex which must be generated from a single input file, and implement those items, either with a simplified markup (preferable) or with some harder xml specified language (simpler but harder on the user to type and read). Also, it is clear that there will always be rarer typesetting features (but no structural features) missing from the chosen subset, and it could simply be chosen that latex will be used to implement those, being the only effort to translate those features to something compatible with html, such as images or mathml. I believe that a subset such as that used in the Connexions \cite{Co12} system is adequate.
 
 \subsection{A privilege/role system}
 
@@ -314,7 +334,7 @@ There are some features missing from most bug trackers, which work towards allow
   \item a field in the bugtracker in which bug submitters write the position of the text at which the question or suggestion is located. For this to work, it would be necessary to attribute ids to different parts of documents
 \end{itemize}
 
-\section{Examined alternatives}
+\section{Existing solutions} \label{existing-solutions}
 
 Many existing systems are close to fulfilling those requirements, but I believe none yet can fulfil all of them in a convenient manner. A major goal of this project will be to analyse those existing systems, and determine which one would be more profitable to modify to reach the desired requirements faster.
 
@@ -322,14 +342,16 @@ Many existing systems are close to fulfilling those requirements, but I believe 
 
 This combo has already been used for a long time for the development of open source software and has reached great maturity in this domain of application, however, the techniques used for software should carry to text development since both are nothing but big bunches of organized textual information.
 
-There are however some superficial conflicts that still make this alternative cumbersome for the development of text. I examine here a Git + Github combo:
+There are however some superficial conflicts that still make this alternative cumbersome for the development of text. I generally:
 
 \begin{itemize}
-  \item the development is local oriented, suffering thus of difficulties of local development such as steeper learning curve and difficulty of sharing binary resources such as images.
+  \item the editing is local oriented, suffering thus of difficulties of local development such as steeper learning curve and difficulty of sharing binary resources such as images. There is at least one web interface which allows commit that I know of: Github, which is unfortunately closed source, but this could be the beginning of more.
   
-  \item files cannot be modified on a one by one basis, forcing users who want to make merge requests to either pull the whole repository (which may be large, and very large if a repository has a great amount of images), or for the authors to work with one file per repository, which would require creating and pushing to a large number of different repositories.
+  \item files cannot be modified on a one-by-one basis, forcing users who want to make merge requests to either pull the whole repository (which may be large, and very large if a repository has a great amount of images), or for the authors to work with one file per repository, which would require creating and pushing to a large number of different repositories.
   
   \item merges are line oriented, while the more natural form of text is natural languages modification is word-wise. It is true however that git can do word-diffs via the --word-diff option, but the mergers are still line oriented, and thus inefficient. This could however be circumvented by tweaking git by adding a word-wise commit method, chosen by the user at the moment of creation of a repository, and which cannot be changed afterwards.
+  
+  \item there is little information about users, often not even a profile page, since these systems are often developed for projects in which each user 
 \end{itemize}
 
 I have focused mostly on Github because it seems to be the most complete web interface for git developement, but if this alternative is to persued, it would be necessary to move to another open source git web interface, such as Gitorious. Also in the case of Gitorious for example, the bug tracker is not integrated, so that it would be necessary to choose, tweak and possibly even integrate a separate bug tracker system into it.
@@ -364,11 +386,88 @@ There are already some projects, such as the Sakai Project (\url{http://www.saka
 
 \section{Comparison of alternatives}
 
-\begin{tabular}{c} \label{tabComparisonOfAlternatives}
+In order to choose between the possible alternatives, I have looked at the documentation of several existing projects, and talked with people who have experience on this domain, such as Alexandre Martinazzo and his colleges from the LSI lab.
 
-\end{tabular}
+A determining choice for me was that of implementation language and web framework. The framework is nothing but the library which allows for efficient creation of web sites. The types of jobs it can be used for include:
 
-\section{Proposed schedules}
+\begin{itemize}
+  \item database language hooks, particularly through an object representation to the database
+  \item an html template language, which allows to factor out repeated html code
+  \item a standardized approach to certain design patterns, such as model/view, plug-in architecture
+\end{itemize}
+
+I have first looked from this point of view because all existing solutions are based on some framework,
+and without knowing the framework, I would be unable to modify any existing project.
+
+Therefore, I decided to first select the language and framework I would use,
+then develop a simple solution to my problem, and after I had learnt the framework,
+to integrate my solution with an existing solution.
+
+A comparison of languages can be seen in table \ref{tab1}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{cccc}
+    language & my knowledge & impression from others & outside server \\  		    
+		\hline
+		python & medium/advanced & generally good & yes \\
+    php & basic & bad organization & no \\
+    ruby & none & too implicit & yes \\
+  \end{tabular}
+  \caption{language alternatives}
+  \label{tab1}
+\end{table}
+
+I have excluded C\verb!#! from consideration, because although a common language for web
+development, I had no experience with it, and it is linked to Microsoft, which
+does not favour open source development, meaning that at some point, free solutions
+would become harder and harder to find.
+
+Therefore I was from the beginning inclined towards going with Python, since most people
+had a good opinion about it, and I had quite some background with it before. Also,
+running outside a server is important to me to ease framework administration tasks
+and to serve for other purposes.
+
+I also took in consideration the existing frameworks for those languages, as summarized in
+table \ref{tab2}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{ccc}
+    framework & language & github forks \\  		    
+		\hline
+		django \cite{DD12} & python & 4k \\
+    php & several & 1-4k \\
+    ruby-on-rails & ruby & 16k \\
+  \end{tabular}
+  \caption{framework alternatives}
+  \label{tab2}
+\end{table}
+
+Here, framework popularity was an important factor, since web development
+is largely based on mutual community help. Needless to say, measuring framework
+popularity is a hard taks, but a good measure seems to be the number of forks
+on Gitbub for each framework, since all frameworks are developed on Github.
+
+I therefore decided to go with the language I knew best, Python, and its main framework,
+Django, since frameworks
+seemed to have comparable popularities, and the cost of learning a new language
+would certainly out-weight the differences of framework popularity.
+
+\subsection{Existing django based solutions}
+
+In the meanwhile, I have also looked for existing solutions to integrate with.
+
+I know that Django apps are designed to be highly pluggable,
+so looking for popular apps would be a possible course of action.
+
+\subsubsection{Trac bugtracker}
+
+My main focus were bug trackers, ticked issuing systems and forums. The most promising alternatives I have found were was the Trac bug tracker. The number one bugtracker based on Django. Allows for custom search fields, but does not seem to be very user oriented, and completely lacks the concept of user group, so important to me. It does support a plug-in system, which would allow for a pluggable implementation of user groups.
+
+Unfortuanatelly Trac is a big system, and modifying if may be a difficult task. Therefore, at this point, I have decided to first create a simple issue tracking system from scratch as an app (a Django plugin), supporting user groups, and later try to incorporate it into a larger system.
+
+\section{Schedules}
 
 \subsection{As 18/09/2012}
 
@@ -378,6 +477,34 @@ Out of the total 12 weeks left before the final presentation deadline (11/12/201
   \item 1-2 analysis of existing systems.
   \item 3-10 implementation of as many missing features as possible for the chosen alternative
   \item 11-12 creation of a control course using the chosen system
+\end{itemize}
+
+\subsection{As 30/10/2012}
+
+Looking back on the previous schedule, it was very high level since some important decisions were left,
+to be made, but after week 1, I had decided to dedicate all my time to learning the Django web framwork,
+until I was experient enough to develop my own solution.
+
+I underestimated the difficulty of learning a framework, and every seemingly
+simple new task took me a long time to learn. This is how I used the past weeks:
+
+\begin{itemize}
+  \item 1 analysis of existing systems. decided to use Python Django, and develop first a user-groups app.
+  \item 2-4 learnt the framework basics through tutorials and by making a sample app
+  \item 5-6 started implementing my user groups app which I present today.
+\end{itemize}
+
+Now I feel really much more confortable with the Django framework, and feel that I will be able to better
+estimate the required time for future tasks. I have decided to spend them as follows:
+
+\begin{itemize}
+  \item 7 finish implementing the user groups app.
+  \item 8 search for existing ticket issuing solutions to integrate with.
+  
+    decide if it is worth using them of if it would be better to create a simple ticket issuing app myself.
+    
+  \item 9 finish integration with/implementation of ticket issuing.
+  \item 10-12 develop control learning material using the created components and the proposed methodology.
 \end{itemize}
 
 \newpage
