@@ -1,3 +1,5 @@
+\newcommand*{\PAPER}{} %for paper output
+
 \ProvidesPackage{main}
 
 \usepackage{amssymb}
@@ -31,7 +33,11 @@
 
 \newcommand{\subsubsubsection}[1]{\textbf{#1}\hrule}
 
-\usepackage[linkbordercolor={1 0 0}]{hyperref} % makes pdf hyperlinks with red borders
+\ifdefined\PAPER
+\usepackage[linkbordercolor={1 1 1}]{hyperref} % no borders
+\else
+\usepackage[linkbordercolor={1 0 0}]{hyperref} % red borders
+\fi
 
 
 %----------- theorems -----------------%

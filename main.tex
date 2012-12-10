@@ -1,8 +1,10 @@
 \documentclass[12pt]{article}
 
-\title{Comparative analysis of collaborative and scalable e-learning methodologies for control theory}
-\author{Ciro D. Santilli\\
-Tutor: Roseli Lopes
+\title{Comparative analysis of collaborative and scalable e-learning methodologies\\[1cm]
+{\large Term paper for the obtention of the engineer degree at the Polytechnic School of the University of Sao Paulo }
+}
+\author{Author: Ciro Duran Santilli\\
+Tutor: Roseli de Deus Lopes
 }
 
 \usepackage{main}
@@ -38,9 +40,11 @@ difficulty: multiple login
 \newpage
 
 %this makes the abstract. At first comment out to get quickly to the table of contents in dev mode.
-%\begin{abstract}
-%\end{abstract}
-%\newpage
+\begin{abstract}This work explores the use of source version control + bugtracker techniques for 
+the use of collaborative online education. Missing features of such systems for education are
+outlined, of which filtering of issues by user groups and uri groups has been implemented in the Django framework.
+\end{abstract}
+\newpage
 
 \tableofcontents
 \newpage
@@ -58,7 +62,19 @@ I must express my special thanks to the following people:
 \end{itemize}
 \newpage
 
+\section{Source code} \label{source-code}
+
+The source code for this text can be found at:
+
+\url{https://github.com/cirosantilli/elearn}
+
+and source code developed for the site at:
+
+\url{https://github.com/cirosantilli/python/tree/master/cirosantilli/django}
+
 \section{Introduction} \label{introduction}
+
+\subsection{Motivation} \label{motivation}
 
 The aim of this project is to study current e-learning methodologies, and after deciding which one is more promising, to develop as many features as possible towards the goal on an order of increasing cost/benefit.
 
@@ -469,7 +485,7 @@ Unfortuanatelly Trac is a big system, and modifying if may be a difficult task. 
 
 \section{Schedules} \label{schedules}
 
-\subsection{As 18/09/2012}
+\subsection{18/09/2012}  \label{2012-09-18}
 
 Out of the total 12 weeks left before the final presentation deadline (11/12/2012), of the project, I intend to allocate tasks as follow:
 
@@ -479,7 +495,7 @@ Out of the total 12 weeks left before the final presentation deadline (11/12/201
   \item 11-12 creation of a control course using the chosen system
 \end{itemize}
 
-\subsection{30/10/2012}
+\subsection{30/10/2012}  \label{2012-10-30}
 
 Looking back on the previous schedule, it was very high level since some important decisions were left,
 to be made, but after week 1, I had decided to dedicate all my time to learning the Django web framwork,
@@ -507,7 +523,7 @@ estimate the required time for future tasks. I have decided to spend them as fol
   \item 10-12 develop control learning material using the created components and the proposed methodology.
 \end{itemize}
 
-\section{30/10/2012} \label{what-i-did}
+\subsection{10/12/2012} \label{2012-10-30}
 
 As of 10/12/2012, I managed to make a system that can:
 
@@ -548,7 +564,7 @@ and for new projects which I intend on creating.
 
 \begin{itemize}
   \item large contributions to django tables 2, by turning a table with checkboxes into a django widget.
-  \item creation of \ django_tables2_datatables app, which integrates django_tables2 and datatables.
+  \item creation of \lstinline|django_tables2_datatables| app, which integrates \lstinline|django_tables2| and datatables.
   
     I intend on publishing this a separate repository as it gets more and more mature, and when I
     include tests and documentation.
@@ -608,16 +624,58 @@ Features which I intend on implementing afterwards include:
   \item find/create/modify an existing lightweight markup language with pdf/html output.
 
     This is a huge necessity of elearning, which is not impossible to solve, but requires
-    quite some work.
+    quite some work. One major necessity missing in most of those languages include:
     
-    One major necessity missing in most of those languages is the ability to make sections
-    without writing the section level (h1/h2 in html section/subsection in latex), but calculating
-    the level relative to other sections. Also, every section could include links to previous/next/parent sections.
-    
-    Another key missing feature is the ability to make a bijection between ids and labels, since those are
-    a fundamental part of a collaborative learning system.
+    \begin{itemize}   
+	    \item is the ability to make sections
+	      without writing the section level (h1/h2 in html section/subsection in latex), but calculating
+	      the level relative to other sections. Also, every section could include links to previous/next/parent sections.
+	    
+	    \item bijection between ids and labels, since those are
+	      a fundamental part of a collaborative learning system.
+	      
+	    \item the ability to refer to a current version. This is currently problematic for systems
+	      that identify versions by either hash or date, since it is impossible to determine the id
+	      of the new version.
+	      
+	      On the other hand, systems that identify versions sequentially (1,2,3,\ldots) cannot be distributed,
+	      such as is the case of git (svn for example), and loses much of the flexibility of a distributed system.
+	      
+    \end{itemize}
 
+  \item create a system that manages id modifications.
+  
+    this should support the following operations:
+    
+    \begin{itemize}
+      \item rename
+      \item move
+      \item merge
+      \item split
+      \item delete
+    \end{itemize}
+    
+    and automatically carry over metadata such as comments and issues to newer versions when possible.
+    
 \end{itemize}
+
+\section{conclusion} \label{conclusion}
+
+While all the developments of this work might not seem very impressive, I have been able to learn
+several fundamental ideas in order to reach my ambition: make elearning into a better alternative
+to traditional learning, which I believe it has untapped potential to be.
+
+I am still not at a professional level that allows me to quickly achieve my goals, but I do feel much closer to
+that goal now than before this project.
+
+Also I feel that I have devoted to this project more time/energy
+than was obligatory, and I really enjoyed the process.
+
+Finally, besides the techniques I have learnt, I have also been able to further develop my ideas, making
+older ones more precise, coming across new ones in the process.
+
+For those reasons, I consider that this project a complete success, and may have great positive impact on
+my future choices and, I hope, on society.
 
 \newpage
 \bibliography{main}
