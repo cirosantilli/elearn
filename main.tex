@@ -95,7 +95,7 @@ The goal of this section is to describe in general what the system does from the
 
 \subsection{Use cases by analogy} \label{use-cases-analogy}
 
-Maybe the fastest way of describing the system is by comparing it to other systems. Therefore, if you know what is github \cite{Gi12}/googlecode\cite{Go12} (git \cite{git}/subversion \cit{svn} + web interface) and a bugtracker, I would summarize my desired system as a Github/googlecode with a bugtracker that such that:
+Maybe the fastest way of describing the system is by comparing it to other systems. Therefore, if you know what is github \cite{Gi12}/googlecode\cite{Go12} (git \cite{git}/subversion \cite{svn} + web interface) and a bugtracker, I would summarize my desired system as a Github/googlecode with a bugtracker that such that:
 
 \begin{itemize}
   \item each issue in the bugtracker has a localization id field which indicates what point of the material is the issue about
@@ -373,7 +373,7 @@ Systems that integrate features of CMS with blogs, wikis and bug-trackers are co
 
 \subsection{Connexions}
 
-Connexions (\href{http://cnx.org/}{http://cnx.org/}). While it shares some aspects of CMS, it has such a great emphasis in pdf/html conversion.
+Connexions (\url{http://cnx.org/}). While it shares some aspects of CMS, it has such a great emphasis in pdf/html conversion.
 
 Connexions uses a native input format based on xml which is a little hard to write manually, but which might be transformed into some lightweight mark-up language.
 
@@ -467,7 +467,7 @@ My main focus were bug trackers, ticked issuing systems and forums. The most pro
 
 Unfortuanatelly Trac is a big system, and modifying if may be a difficult task. Therefore, at this point, I have decided to first create a simple issue tracking system from scratch as an app (a Django plugin), supporting user groups, and later try to incorporate it into a larger system.
 
-\section{Schedules}
+\section{Schedules} \label{schedules}
 
 \subsection{As 18/09/2012}
 
@@ -479,7 +479,7 @@ Out of the total 12 weeks left before the final presentation deadline (11/12/201
   \item 11-12 creation of a control course using the chosen system
 \end{itemize}
 
-\subsection{As 30/10/2012}
+\subsection{30/10/2012}
 
 Looking back on the previous schedule, it was very high level since some important decisions were left,
 to be made, but after week 1, I had decided to dedicate all my time to learning the Django web framwork,
@@ -505,6 +505,118 @@ estimate the required time for future tasks. I have decided to spend them as fol
     
   \item 9 finish integration with/implementation of ticket issuing.
   \item 10-12 develop control learning material using the created components and the proposed methodology.
+\end{itemize}
+
+\section{30/10/2012} \label{what-i-did}
+
+As of 10/12/2012, I managed to make a system that can:
+
+\begin{itemize}
+  \item create user lists
+  \item create uri lists
+  \item create very simple issues
+  \item filter the issues by user lists and uri lists
+\end{itemize}
+
+The code for those features can be found on \href{https://github.com/cirosantilli/python/tree/a25d7e5de30c7013e2802e4a5a3630e3b8372c07/cirosantilli/django}{my github}.
+
+While those features might seem simple, I have made a great effort to use production level techniques
+wherever I could learn them. Therefore, I spent most of my time learning those techniques, which include:
+
+\begin{itemize}
+
+  \item intermediate level creation of Python code documentation via \href{http://sphinx-doc.org/}{sphinx}
+
+  \item better use of git for the open source development model
+  
+    this is absolutely fundamental, since collaboration is the key to success on open source
+    web development.
+    
+    I have learnt for example about different development models, such as the stable/hotfix/dev/feature model.
+    
+    furthermore, I intend on using git-like workflows for eduction itself, so this was
+    of double use to me.
+    
+  \item \href{http://south.aeracode.org/}{django south app} for data migrations
+  \item \href{http://www.datatables.net}{datatables} javascript library for table sorting/filtering
+  \item \href{https://github.com/bradleyayers/django-tables2/issues}{django tables 2} for Django static
+    table management
+\end{itemize}
+
+I have also made been able to make some contributions which I judge useful for existing projects,
+and for new projects which I intend on creating.
+
+\begin{itemize}
+  \item large contributions to django tables 2, by turning a table with checkboxes into a django widget.
+  \item creation of \ django_tables2_datatables app, which integrates django_tables2 and datatables.
+  
+    I intend on publishing this a separate repository as it gets more and more mature, and when I
+    include tests and documentation.
+  
+  \item minor contributions to datatables and
+    \href{https://github.com/bread-and-pepper/django-userena/}{django userena}
+\end{itemize}
+
+\section{TODO} \label{todo}
+
+Features which I intend on implementing afterwards include:
+
+\begin{itemize}
+
+  \item learn better documentation techniques
+
+  \item learn better testing techniques
+  
+  \item learn real deployment on a free server. I looked briefly into this, and the best
+    free one I could find was \href{https://www.pythonanywhere.com/}{python anywhere},
+    which offers 500Mb of data.
+    
+    It is clear that Django hosting is still at its infancy when compared to php hosting
+    services.
+
+  \item better manage filtering/sorting of both server information requests,
+    and management of data on the browser via javascript
+    
+    ideas include:
+    
+    \begin{itemize}
+      \item a fuller django integration with \href{http://www.datatables.net}{datatables} for the
+        local javascript management.
+        
+      \item ability to do queries using programming constructs such as sums and boolean operations,
+        either locally with javascript, or on server with python.
+        
+        On server this becomes of course more dangerous, but I believe it to be possible. One could
+        for example limit the amount of computations done, and execute code on a clean python environment.
+      
+      \item allow advanced users to download requested data on some
+        format such as xml of json which can be easily read by several programming languages,
+        so that the user can locally create custom data processing routines. Data could be shared
+        through torrents, released every 3 months for example.
+    \end{itemize}
+
+  \item integration with a stable issue tracker
+  
+    The issue tracker I have created is extremely simple, and serves
+    only for testing purposes.
+    
+    I intend on integrating my work on a highly maintained issue tracker,
+    either as a Trac plug-in or a simpler one that is a django app such as
+    \href{http://www.djangopackages.com/packages/p/django-knowledge/}{django-knowledge}
+    or \href{http://www.djangopackages.com/packages/p/django-helpdesk/}{django-helpdesk}  
+  
+  \item find/create/modify an existing lightweight markup language with pdf/html output.
+
+    This is a huge necessity of elearning, which is not impossible to solve, but requires
+    quite some work.
+    
+    One major necessity missing in most of those languages is the ability to make sections
+    without writing the section level (h1/h2 in html section/subsection in latex), but calculating
+    the level relative to other sections. Also, every section could include links to previous/next/parent sections.
+    
+    Another key missing feature is the ability to make a bijection between ids and labels, since those are
+    a fundamental part of a collaborative learning system.
+
 \end{itemize}
 
 \newpage
